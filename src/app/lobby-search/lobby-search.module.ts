@@ -6,9 +6,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LobbySearchComponent } from './lobby-search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, BrowserAnimationsModule,  NgxSpinnerModule],
   declarations: [LobbySearchComponent, LobbySummaryComponent, LobbyFilterPipe],
   exports: [LobbySearchComponent],
   providers: [LobbySearchService]
