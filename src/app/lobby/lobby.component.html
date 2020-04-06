@@ -1,0 +1,41 @@
+<h2>GAME : {{lobby.name}}</h2>
+<hr>
+<div class="row">
+  <div class="col-sm">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Color</th>
+          <th scope="col">Player</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Civ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of lobby.players; let i = index">
+          <th scope="row">
+            #{{i}}
+          </th>
+          <td  scope="col">
+            {{player.color || '-' }}
+          </td>
+          <td  scope="col">
+            <span *ngIf="player.clan" >[{{player.clan}}]</span> {{player.name || '-' }}
+          </td>
+          <td  scope="col">
+            <input type="number" value="{{player.rating}}" required>
+          </td>
+          <td  scope="col">
+            {{player.civ || '-'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+</div>
+
+<button class="btn btn-primary"><span class="fa fa-play  text-white"></span> Equilibrer</button>
+
+
