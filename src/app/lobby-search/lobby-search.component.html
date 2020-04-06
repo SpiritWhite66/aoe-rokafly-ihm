@@ -1,0 +1,29 @@
+<h2>Recherche du Lobby</h2>
+<hr>
+<div class="row">
+  <div class="col-sm">
+    <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" name="idLobby" id="idLobby" placeholder="GameID" aria-label="GameID" [(ngModel)]="matchId" required>
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">Rechercher</button>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm">
+    <div class="list-group">
+      <div *ngFor="let lobby of lobbies | lobbyFilter:matchId">
+        <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" (click)="selectLobby(lobby)" >
+          {{lobby.name}}
+          <span class="badge badge-primary badge-pill">{{lobby.num_players}}/{{lobby.num_slots}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm">
+    <app-lobby-summary *ngIf="selectedLobby" [lobby]="selectedLobby"></app-lobby-summary>
+  </div>
+
+</div>
+
+

@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{lobby.name}} <span class="badge badge-primary badge-pill">{{lobby.num_players}}/{{lobby.num_slots}}</span></h5>
+    <div class="card-text">
+      <div *ngFor="let player of lobby.players">
+        {{player.name}}
+      </div>
+    </div>
+    <hr>
+    <a class="btn btn-primary" [routerLink]="['/lobby', lobby.match_id]" >Rejoindre</a>
+  </div>
+</div>
