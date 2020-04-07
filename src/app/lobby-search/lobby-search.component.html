@@ -5,10 +5,20 @@
 <h2>Recherche du Lobby</h2>
 <hr>
 <div class="row">
-  <div class="col-4 mr-auto">
+  <div class="col-7 mr-auto">
     <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" name="idLobby" id="idLobby" placeholder="GameID or Name" aria-label="GameID" [(ngModel)]="matchId" required>
-      <button class="btn btn-primary my-2 my-sm-0" type="submit">Rechercher</button>
+      <input class="form-control mr-sm-2" type="text" name="idLobby" id="idLobby" placeholder="GameID or Name" aria-label="GameID" [(ngModel)]="matchId" required>
+      <div class="input-group mt-2 mt-md-0">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">SERVER</label>
+        </div>
+        <select class="custom-select" id="server" [(ngModel)]="serverValue" name="server">
+          <option value="" selected></option>
+          <ng-container *ngFor="let server of servers">
+            <option value="{{server.name}}">{{server.name}}</option>
+          </ng-container>
+        </select>
+      </div>
     </form>
   </div>
   <div class="col-4 text-sm-right">
@@ -20,7 +30,7 @@
 <div class="row">
   <div class="col-sm">
     <div class="list-group">
-      <div *ngFor="let lobby of lobbies | lobbyFilter:matchId">
+      <div *ngFor="let lobby of lobbies | lobbyFilter: {match: matchId, server: serverValue}">
         <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" (click)="selectLobby(lobby)" >
           {{lobby.name}}
           <span class="badge badge-primary badge-pill">{{lobby.num_players}}/{{lobby.num_slots}}</span>

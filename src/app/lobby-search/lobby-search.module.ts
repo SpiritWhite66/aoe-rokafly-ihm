@@ -1,3 +1,4 @@
+import { ServerService } from './server.service';
 import { LobbyFilterPipe } from './lobby-filter.pipe';
 import { LobbySummaryComponent } from './lobby-summary.component';
 import { LobbySearchService } from './lobby-search.service';
@@ -13,7 +14,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   imports: [CommonModule, RouterModule, FormsModule, BrowserAnimationsModule,  NgxSpinnerModule],
   declarations: [LobbySearchComponent, LobbySummaryComponent, LobbyFilterPipe],
   exports: [LobbySearchComponent],
-  providers: [LobbySearchService]
+  providers: [LobbySearchService, ServerService]
 })
 
 export class LobbySearchModule {}

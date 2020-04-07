@@ -8,4 +8,5 @@ export interface ILobby {
   num_slots: number;
   server: string;
   players: any;
+  average_rating: number;
 }

@@ -1,9 +1,37 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">{{lobby.name}} <span class="badge badge-primary badge-pill">{{lobby.num_players}}/{{lobby.num_slots}}</span></h5>
-    <div class="card-text">
-      <div *ngFor="let player of lobby.players">
-        {{player.name}}
+    <h5 class="card-title row">
+      <div class="col-8">{{lobby.name}} </div>
+      <div class="col-4 text-sm-right">
+        <span class="badge badge-primary badge-pill">{{lobby.num_players}}/{{lobby.num_slots}}</span>
+      </div>
+    </h5>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <span class="font-weight-bold">ELO moyen :</span> {{lobby.average_rating}}
+      </div>
+      <div class="col">
+        <span class="font-weight-bold">Serveur :</span> {{lobby.server}}
+      </div>
+    </div>
+    <hr>
+    <div class="card-text row">
+      <div class="col-7 mr-auto">
+        <ul class="list-group">
+          <ng-container  *ngFor="let player of lobby.players">
+            <li *ngIf="player.name" class="list-group-item">
+              <span class="badge badge-primary badge-pill">{{player.rating}}</span>
+              <span class="text-justify">
+               <span *ngIf="player.clan">[{{player.clan}}]</span>
+                {{player.name}}
+              </span>
+            </li>
+          </ng-container >
+        </ul>
+      </div>
+      <div class="col-5 text-sm-right">
+        <img src="../../assets/image/map/cm_metropolis.png" class="img-fluid mx-auto d-block">
       </div>
     </div>
     <hr>
