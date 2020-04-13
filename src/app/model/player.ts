@@ -11,7 +11,7 @@ export interface IPlayer {
   wins: number;
   streak: number;
   drops: number;
-  color: string;
+  color: number;
   team: string;
   civ: string;
 }

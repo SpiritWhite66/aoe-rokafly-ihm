@@ -12,7 +12,7 @@ import { ServerService } from './server.service';
   templateUrl: 'lobby-search.component.html'
 })
 
-export class LobbySearchComponent implements OnInit{
+export class LobbySearchComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private lobbySearchService: LobbySearchService,
@@ -43,26 +43,26 @@ export class LobbySearchComponent implements OnInit{
   searchWithLoad() {
     this.spinner.show();
     this.lobbySearchService.getLobbies()
-                                     .subscribe(res => {
-                                        this.lobbies = res;
-                                        this.spinner.hide();
-                                      } ,
-                                      err => { console.error(err.status);  });
+      .subscribe(res => {
+        this.lobbies = res;
+        this.spinner.hide();
+      },
+        err => { console.error(err.status); });
   }
 
   searchLobby() {
     this.lobbySearchService.getLobbies()
-                                     .subscribe(res => this.lobbies = res ,
-                                      err => console.error(err.status));
+      .subscribe(res => this.lobbies = res,
+        err => console.error(err.status));
   }
 
   searchServer() {
     this.serverService.getServers()
-                                     .subscribe(res => this.servers = res ,
-                                      err => console.error(err.status));
+      .subscribe(res => this.servers = res,
+        err => console.error(err.status));
   }
 
-  selectLobby(lobby: ILobby){
+  selectLobby(lobby: ILobby) {
     this.selectedLobby = lobby;
   }
 

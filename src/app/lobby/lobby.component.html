@@ -1,28 +1,32 @@
 <div *ngIf="lobby">
-  <div class = "row">
-    <h2>GAME : {{lobby.name}}</h2>
+  <div class="row">
+    <h2>GAME : {{ lobby.name }}</h2>
   </div>
-  <hr>
-  <div class ="row">
+  <hr />
+  <div class="row">
     <h4>Informations :</h4>
   </div>
-  <div class ="row">
+  <div class="row">
     <div class="col-5">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas tortor nec quam ornare, nec egestas eros suscipit. Vivamus ipsum ante,
-      tincidunt eget justo quis, lobortis vestibulum sapien. Pellentesque eu pretium nibh. Cras libero justo, aliquam suscipit elementum a, accumsan id justo.
-      Curabitur efficitur in nibh ut pharetra. Vestibulum quis condimentum orci. Maecenas vel nulla vel nunc fermentum sagittis. Cras eget ultricies massa
+      <span class="font-weight-bold">Nombre de slots : </span>{{lobby.num_slots}}<br />
+      <span class="font-weight-bold">Elo Moyen (d'après le server) : </span>{{lobby.average_rating}}<br />
+      <span class="font-weight-bold"> Server : </span>{{lobby.server}}<br />
     </div>
     <div class="col-5">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas tortor nec quam ornare, nec egestas eros suscipit. Vivamus ipsum ante,
-      tincidunt eget justo quis, lobortis vestibulum sapien. Pellentesque eu pretium nibh. Cras libero justo, aliquam suscipit elementum a, accumsan id justo.
-      Curabitur efficitur in nibh ut pharetra. Vestibulum quis condimentum orci. Maecenas vel nulla vel nunc fermentum sagittis. Cras eget ultricies massa
+      <span class="font-weight-bold">Type de partie : </span>{{lobby.victory}}<br />
+      <span class="font-weight-bold">Nombre de pop : </span>{{lobby.pop}}<br />
+      <span class="font-weight-bold">Taille de map : </span>{{lobby.map_size}}<br />
+      <span class="font-weight-bold">Nom de la map : </span>{{lobby.map_type}}<br />
+
     </div>
     <div class="col-2">
-      <img src="../../assets/image/map/cm_metropolis.png" class="img-fluid mx-auto d-block">
+      <img
+        src="../../assets/image/map/cm_metropolis.png"
+        class="img-fluid mx-auto d-block"
+      />
     </div>
-
   </div>
-  <hr>
+  <hr />
   <div class="row">
     <div class="col-sm">
       <table class="table">
@@ -36,39 +40,52 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let player of lobby.players; let i = index">
-            <th scope="row">
-              #{{i}}
-            </th>
-            <td  scope="col">
-              {{player.color || '-' }}
-            </td>
-            <td  scope="col">
-              <span *ngIf="player.clan" >[{{player.clan}}]</span> {{player.name || '-' }}
-            </td>
-            <td  scope="col">
-              <input type="number" value="{{player.rating}}" required>
-            </td>
-            <td  scope="col">
-              {{player.civ || '-'}}
-            </td>
-          </tr>
+          <ng-container *ngFor="let player of lobby.players; let i = index">
+            <tr [ngClass]="colorTeam(player)">
+              <th scope="row">#{{ i }}</th>
+              <td scope="col">
+                {{ player.color || "-" }}
+              </td>
+              <td scope="col">
+                <span *ngIf="player.clan">[{{ player.clan }}]</span>
+                {{ player.name || "-" }}
+              </td>
+              <td scope="col">
+                <input type="number" [(ngModel)]="player.rating"  required />
+              </td>
+              <td scope="col">
+                {{ player.civ || "-" }}
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
-    <hr>
+    <hr />
   </div>
 
-  <button class="btn btn-primary" (click)='balancingLobby(lobby.players)'><span class="fa fa-play text-white"></span> Equilibrer</button>
+  <button
+    class="btn btn-primary"
+    (click)="balancingLobby(lobby)"
+    [disabled]="!isComplet"
+    title="Disponible uniquement pour les partie 4 vs 4 complète"
+  >
+    <span class="fa fa-play text-white"></span> Equilibrer
+  </button>
 
-  <div *ngIf="jsonRequest">
-    <hr/>
-    <div class="input-group" >
+  <div *ngIf="jsonResponse">
+    <hr />
+    <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text">Request (Mode Debug)</span>
       </div>
-      <textarea class="form-control" aria-label="Request (Mode Debug)" rows="15"> {{jsonRequest | json}}</textarea>
+      <textarea
+        class="form-control"
+        aria-label="Request (Mode Debug)"
+        rows="15"
+      >
+ {{ jsonResponse | json }}</textarea
+      >
     </div>
   </div>
 </div>
-
