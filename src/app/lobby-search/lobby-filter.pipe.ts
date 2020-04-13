@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class LobbyFilterPipe implements PipeTransform {
   transform(value: ILobby[], searchTerm: any = '') {
     console.log('LobbyFilterPipe:' + searchTerm );
-    if (searchTerm !== '') {
+    if (value && searchTerm !== '') {
       return value.filter((lobby: ILobby) => {
         return this.filtreMatch(lobby, searchTerm.match)
         && this.filtreServer(lobby, searchTerm.server);

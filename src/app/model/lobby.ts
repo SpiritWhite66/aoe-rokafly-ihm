@@ -9,4 +9,8 @@ export interface ILobby {
   server: string;
   players: any;
   average_rating: number;
+  victory: number;
+  pop: number;
+  map_size: number;
+  map_type: number;
 }
